@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoadingController, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { IonPasscodeOptions } from '../../app/ion-passcode';
+import { IonPasscodeOptions } from '../../components/ion-passcode';
 
 /**
  * Generated class for the LoginPage page.

@@ -5,16 +5,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { TSMobile } from './app.component';
-import { IonPasscode } from './ion-passcode';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+import { IonPasscode } from '../components/ion-passcode';
 
 @NgModule({
   declarations: [
     TSMobile,
     IonPasscode,
     LoginPage,
-    HomePage,    
+    HomePage,
+    IonPasscode
   ],
   imports: [
     BrowserModule,

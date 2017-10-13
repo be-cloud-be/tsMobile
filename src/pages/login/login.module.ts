@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login';
-import { IonPasscode } from '../../app/ion-passcode';
+import { IonPasscode } from '../../components/ion-passcode';
 
 @NgModule({
   declarations: [
