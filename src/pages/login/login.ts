@@ -18,7 +18,7 @@ export class LoginPage {
 
     passcodeOptions: IonPasscodeOptions;
 
-    constructor(public loadingCtrl: LoadingController) { }
+    constructor(public loadingCtrl: LoadingController, private nav: NavController) { }
 
     ngOnInit() {
 
@@ -29,7 +29,7 @@ export class LoginPage {
         onComplete: function(passcode: string) {
 
           // (optional) show a message to your users while you are verifying the passcode
-          let loader = _t.loadingCtrl.create({ content: 'Passcode: ' + passcode, dismissOnPageChange: true });
+          let loader = _t.loadingCtrl.create({ content: 'Checking passcode', dismissOnPageChange: true });
           loader.present();
 
           // you have to return a promise once you have verified the passcode
@@ -39,11 +39,11 @@ export class LoginPage {
             // the timeout is here to simulate the verifying process
             setTimeout(() => {
               loader.dismiss();
-              if (passcode == '0000') {
+              if (passcode == '1234') {
                 reject();
               }
               else {
-                resolve();
+                this.nav.setRoot('HomePage');
               }
             }, 2000);
           });
