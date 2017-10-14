@@ -10,19 +10,17 @@ import { HomePageModule } from '../pages/home/home.module';
 
 @NgModule({
   declarations: [
-    TSMobile,
-    LoginPageModule,
-    HomePageModule
+    TSMobile
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(TSMobile)
+    IonicModule.forRoot(TSMobile),
+    LoginPageModule,
+    HomePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    TSMobile,
-    LoginPageModule,
-    HomePageModule
+    TSMobile
   ],
   providers: [
     StatusBar,
