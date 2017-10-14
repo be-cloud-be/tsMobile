@@ -9,7 +9,9 @@ import { IonPasscodeOptions } from '../../components/ion-passcode';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+    name: 'LoginPage'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -40,10 +42,10 @@ export class LoginPage {
             setTimeout(() => {
               loader.dismiss();
               if (passcode == '1234') {
-                reject();
+                  _t.nav.setRoot('HomePage');
               }
               else {
-                this.nav.setRoot('HomePage');
+                  _t.nav.setRoot('LoginPage');
               }
             }, 2000);
           });

@@ -5,17 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { TSMobile } from './app.component';
-import { LoginPage } from '../pages/login/login';
-import { HomePage } from '../pages/home/home';
-import { IonPasscode } from '../components/ion-passcode';
+import { LoginPageModule } from '../pages/login/login.module';
+import { HomePageModule } from '../pages/home/home.module';
 
 @NgModule({
   declarations: [
     TSMobile,
-    IonPasscode,
-    LoginPage,
-    HomePage,
-    IonPasscode
+    LoginPageModule,
+    HomePageModule
   ],
   imports: [
     BrowserModule,
@@ -24,8 +21,8 @@ import { IonPasscode } from '../components/ion-passcode';
   bootstrap: [IonicApp],
   entryComponents: [
     TSMobile,
-    LoginPage,
-    HomePage
+    LoginPageModule,
+    HomePageModule
   ],
   providers: [
     StatusBar,
