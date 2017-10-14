@@ -1,14 +1,27 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <form [formGroup]="timesheet" (ngSubmit)="logForm()" >
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="DDD, DD MMM YYYY" pickerFormat="DDDD MMMM" formControlName="date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Chantier</ion-label>
+      <ion-select formControlName="site" interface="action-sheet">
+        <ion-option *ngFor="let site of sites;" value="{{site.id}}">{{site.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Début</ion-label>
+      <ion-datetime displayFormat="H:mm" pickerFormat="H mm" formControlName="start" min="06:30" max="20:00" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fin</ion-label>
+      <ion-datetime displayFormat="H:mm" pickerFormat="H mm" formControlName="end" min="06:30" max="20:00" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pause</ion-label>
+      <ion-datetime displayFormat="H:mm" pickerFormat="H mm" formControlName="pause" min="00:00" max="04:00" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+    <button ion-button type="submit" block [disabled]="!timesheet.valid">Envoyer</button>
+  </form>
 </ion-content>

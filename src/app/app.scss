@@ -14,3 +14,13 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+ion-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(to bottom right, #9e1654 0%, #db5857 85%);
+  color: white;
+  text-align: center;
+}
