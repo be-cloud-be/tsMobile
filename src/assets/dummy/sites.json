@@ -1,0 +1,15 @@
+{
+	"sites": [{
+			"id": "bissen",
+			"name": "Bissen"
+		},
+		{
+			"id": "mamer",
+			"name": "Mamer"
+		},
+		{
+			"id": "jalhay",
+			"name": "Jalhay"
+		}
+	]
+}
