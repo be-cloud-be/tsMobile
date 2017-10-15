@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoadingController, IonicPage, NavController } from 'ionic-angular';
 import { IonPasscodeOptions } from '../../components/ion-passcode';
+import { OdooProvider } from '../../providers/odoo/odoo';
 
 /**
  * Generated class for the LoginPage page.
@@ -20,7 +21,7 @@ export class LoginPage {
 
     passcodeOptions: IonPasscodeOptions;
 
-    constructor(public loadingCtrl: LoadingController, private nav: NavController) { }
+    constructor(public loadingCtrl: LoadingController, private nav: NavController, private odoo : OdooProvider) { }
 
     ngOnInit() {
 
@@ -42,7 +43,8 @@ export class LoginPage {
             setTimeout(() => {
               loader.dismiss();
               if (passcode == '1234') {
-                  _t.nav.setRoot('HomePage',{'userCode':passcode});
+                  _t.odoo.setUserCode(Number(passcode));
+                  _t.nav.setRoot('HomePage');
               }
               else {
                   _t.nav.setRoot('LoginPage');

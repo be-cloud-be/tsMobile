@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { OdooProvider } from '../../providers/odoo/odoo';
 
@@ -23,8 +23,7 @@ export class SubmitPage {
 
     sites : any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, private odoo : OdooProvider) {
-      console.log('Passed params', navParams.data);
+    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, private odoo : OdooProvider) {
       this.timesheet = this.formBuilder.group({
         date: [new Date().toISOString(), Validators.required],
         site: ['', Validators.required],
@@ -32,7 +31,7 @@ export class SubmitPage {
         end: ['16:30'],
         pause: ['00:30'],
       });
-      this.odoo.getSites(navParams.get('userCode')).then((data : any) => this.sites = data.sites);
+      this.odoo.getSites().then((data : any) => this.sites = data.sites);
     };
 
     logForm() {

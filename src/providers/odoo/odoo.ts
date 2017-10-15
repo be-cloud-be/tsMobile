@@ -11,11 +11,17 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class OdooProvider {
 
+  UserCode : number;
+
   constructor(public http: Http) {
   }
 
-  getSites(userCode: number) {
-      console.log('getSites for user '+userCode)
+  setUserCode(userCode: number) {
+      this.UserCode = userCode
+  }
+
+  getSites() {
+      console.log('getSites for user '+this.UserCode)
       return new Promise(resolve => {
         // We're using Angular HTTP provider to request the data,
         // then on the response, it'll map the JSON data to a parsed JS object.
