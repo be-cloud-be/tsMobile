@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { IonicPage, NavParams } from 'ionic-angular';
 
-import { LoadingController, IonicPage, NavController } from 'ionic-angular';
+import { SubmitPage } from '../submit/submit';
+import { ListPage } from '../list/list';
 
 
 @IonicPage({
@@ -14,33 +14,14 @@ import { LoadingController, IonicPage, NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  timesheet : FormGroup;
+    tab1Root = SubmitPage;
+    tab2Root = ListPage;
 
-  sites = [
-    { id: 'bissen', name : 'Bissen' },
-    { id: 'mamer', name : 'Mamer'},
-    { id: 'jalhay', name : 'Jalhay'}
-  ];
+    loginParams : any;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private formBuilder: FormBuilder) {
-    this.timesheet = this.formBuilder.group({
-      date: [new Date().toISOString(), Validators.required],
-      site: ['', Validators.required],
-      start: ['7:30'],
-      end: ['16:30'],
-      pause: ['00:30'],
-    });
-  };
-
-  logForm() {
-    if(this.timesheet.valid){
-      // (optional) show a message to your users while you are verifying the passcode
-      let loader = this.loadingCtrl.create({ content: 'Pointage envoyé : ' + JSON.stringify(this.timesheet.value), dismissOnPageChange: true });
-      loader.present();
-      setTimeout(() => {
-        loader.dismiss();
-      }, 2000);
+    constructor(navParams: NavParams) {
+        console.log('Passed params', navParams.data);
+        this.loginParams = navParams.data;
     }
-  }
 
 }

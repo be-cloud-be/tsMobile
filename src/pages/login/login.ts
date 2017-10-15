@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoadingController, IonicPage, NavController } from 'ionic-angular';
 import { IonPasscodeOptions } from '../../components/ion-passcode';
 
 /**
@@ -42,12 +42,12 @@ export class LoginPage {
             setTimeout(() => {
               loader.dismiss();
               if (passcode == '1234') {
-                  _t.nav.setRoot('HomePage');
+                  _t.nav.setRoot('HomePage',{'userCode':passcode});
               }
               else {
                   _t.nav.setRoot('LoginPage');
               }
-            }, 2000);
+          }, 500);
           });
         }
       }

@@ -3,10 +3,14 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http';
 
 import { TSMobile } from './app.component';
 import { LoginPageModule } from '../pages/login/login.module';
 import { HomePageModule } from '../pages/home/home.module';
+import { SubmitPageModule } from '../pages/submit/submit.module';
+import { ListPageModule } from '../pages/list/list.module';
+import { OdooProvider } from '../providers/odoo/odoo';
 
 @NgModule({
   declarations: [
@@ -14,9 +18,12 @@ import { HomePageModule } from '../pages/home/home.module';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(TSMobile),
+    IonicModule.forRoot(TSMobile, OdooProvider),
+    HttpModule,
     LoginPageModule,
-    HomePageModule
+    HomePageModule,
+    SubmitPageModule,
+    ListPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -25,7 +32,8 @@ import { HomePageModule } from '../pages/home/home.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    OdooProvider
   ]
 })
 export class AppModule {}
