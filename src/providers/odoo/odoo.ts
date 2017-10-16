@@ -14,7 +14,7 @@ export class OdooProvider {
 
   UserCode : number;
 
-  OdooURL : 'https://socoma.imply.lu';
+  OdooURL = 'https://socoma.imply.lu';
 
   constructor(public http: Http) {
   }
@@ -24,7 +24,6 @@ export class OdooProvider {
   }
 
   getSites() {
-      console.log('getSites for user '+this.UserCode)
       return new Promise(resolve => {
         console.log(this.OdooURL+'/sites');
         // We're using Angular HTTP provider to request the data,
