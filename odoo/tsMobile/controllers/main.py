@@ -12,14 +12,10 @@ from odoo.exceptions import UserError
 from odoo.http import request
 from odoo.tools import html2plaintext
 
-_logger = logging.getLogger(__name__)
-
 class TsMobile(http.Controller):
 
     @http.route([
-        '/sites',
-        '/sites/<int:userCode>',
-    ], type='json', auth="public", website=True)
+        '/sites'
+    ], type='http', auth="public", methods=['POST'], csrf=False)
     def sites(self, userCode=False, debug=False, **k):
-        _logger.info('Get Sites')
-        return request.env['project.project'].sudo().search_read([],['name','code'])
+        return json.dumps({ 'sites' : request.env['project.project'].sudo().search_read([],['name','code'])})
