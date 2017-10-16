@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AppPreferences } from '@ionic-native/app-preferences';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
@@ -15,7 +14,7 @@ export class OdooProvider {
 
   UserCode : number;
 
-  constructor(public http: Http, private appPreferences: AppPreferences) {
+  constructor(public http: Http) {
   }
 
   setUserCode(userCode: number) {
@@ -28,16 +27,13 @@ export class OdooProvider {
         // We're using Angular HTTP provider to request the data,
         // then on the response, it'll map the JSON data to a parsed JS object.
         // Next, we process the data and resolve the promise with the new data.
-        this.appPreferences.fetch('OdooServer').then((odooURL) => {
-          this.http.get(odooURL+'/sites')
-            .map(res => res.json())
-            .subscribe(data => {
-              // we've got back the raw data, now generate the core schedule data
-              // and save the data for later reference
-              resolve(data);
-            });
+        this.http.get(odooURL+'/sites')
+          .map(res => res.json())
+          .subscribe(data => {
+            // we've got back the raw data, now generate the core schedule data
+            // and save the data for later reference
+            resolve(data);
           });
-      });
+        });
     }
-
 }

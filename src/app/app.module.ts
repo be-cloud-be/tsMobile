@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AppPreferences } from '@ionic-native/app-preferences';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
@@ -33,7 +32,6 @@ import { OdooProvider } from '../providers/odoo/odoo';
   providers: [
     StatusBar,
     SplashScreen,
-    AppPreferences,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OdooProvider
   ]
