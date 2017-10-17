@@ -8,6 +8,7 @@
     'description': "",
     'depends': [],
     'data': [
+        'views/hr_employee_view.xml',
     ],
     'demo': [
     ],

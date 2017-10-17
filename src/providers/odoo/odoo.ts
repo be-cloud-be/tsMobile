@@ -24,10 +24,10 @@ export class OdooProvider {
   }
 
   getSites() {
-      return this.jsonRPC('sites','sites',[])
+      return this.jsonRPC('sites','sites',{'userCode' : this.UserCode})
   }
 
-  private jsonRPC(endpoint: string, method: string, params: Array<any>) {
+  private jsonRPC(endpoint: string, method: string, params: any) {
         return new Promise(resolve => {
           var body = {
               "jsonrpc":"2.0",
