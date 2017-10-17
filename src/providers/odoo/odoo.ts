@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http,Headers } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
@@ -25,18 +25,17 @@ export class OdooProvider {
 
   getSites() {
       return new Promise(resolve => {
-        console.log(this.OdooURL+'/sites');
-        // We're using Angular HTTP provider to request the data,
-        // then on the response, it'll map the JSON data to a parsed JS object.
-        // Next, we process the data and resolve the promise with the new data.
-        this.http.post(this.OdooURL+'/sites','{"jsonrpc": "2.0", "method": "sites", "params" : []}')
-          .map(res => res.json())
-          .subscribe(data => {
-            console.log(data);
-            // we've got back the raw data, now generate the core schedule data
-            // and save the data for later reference
-            resolve(data);
+        var body = '{"jsonrpc":"2.0","method": "sites","params": [],"id": "1"}';
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        this.http
+            .post(this.OdooURL+'/sites', body, { headers: headers })
+            .map(response => response.json())
+            .subscribe(data => {
+              console.log(data);
+              resolve(data);
           });
-        });
+      });
     }
 }
