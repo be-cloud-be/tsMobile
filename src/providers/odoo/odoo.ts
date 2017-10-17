@@ -29,7 +29,7 @@ export class OdooProvider {
         // We're using Angular HTTP provider to request the data,
         // then on the response, it'll map the JSON data to a parsed JS object.
         // Next, we process the data and resolve the promise with the new data.
-        this.http.get(this.OdooURL+'/sites')
+        this.http.post(this.OdooURL+'/sites','{"jsonrpc": "2.0", "method": "sites", "params" : []}')
           .map(res => res.json())
           .subscribe(data => {
             console.log(data);
