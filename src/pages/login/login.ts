@@ -38,18 +38,8 @@ export class LoginPage {
           // you have to return a promise once you have verified the passcode
           // if the passcode is invalid call `reject()`
           // if the passcode is valid call `resolve()`
-          return new Promise((resolve, reject) => {
-            // the timeout is here to simulate the verifying process
-            setTimeout(() => {
-              loader.dismiss();
-              if (passcode == '1234') {
-                  _t.odoo.setUserCode(Number(passcode));
-                  _t.nav.setRoot('HomePage');
-              }
-              else {
-                  _t.nav.setRoot('LoginPage');
-              }
-          }, 500);
+          return _t.odoo.setUserCode(Number(passcode)).then((data) => {
+                loader.dismiss();
           });
         }
       }
