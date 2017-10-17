@@ -29,18 +29,19 @@ export class OdooProvider {
   }
 
   setUserCode(userCode: number) {
-      return this.jsonRPC('/check_code',{'userCode' : userCode}).then((data) => {
+      return this.jsonRPC('/ts_mobile/check_code',{'userCode' : userCode}).then((data) => {
           this.UserCode = userCode;
           this.UserName = data['name'];
       });
   }
 
   getSites() {
-      return this.jsonRPC('/sites',{'userCode' : this.UserCode})
+      return this.jsonRPC('/ts_mobile/sites',{'userCode' : this.UserCode})
   }
 
   submit(item : ISubmission) {
       console.log('Submit for ',this.UserName,' : ',item);
+      return this.jsonRPC('/ts_mobile/submit',{'userCode' : this.UserCode, 'item' : item})
   }
 
   private jsonRPC(endpoint: string, params: any) {

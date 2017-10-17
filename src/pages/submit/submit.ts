@@ -35,15 +35,24 @@ export class SubmitPage {
     };
 
     logForm() {
+
       if(this.timesheet.valid){
         // (optional) show a message to your users while you are verifying the passcode
-        this.odoo.submit({
+        let loader = this.loadingCtrl.create({ content: 'Submitting the timesheet', dismissOnPageChange: true });
+        loader.present();
+        // (optional) show a message to your users while you are verifying the passcode
+        return this.odoo.submit({
             date: this.timesheet.get('date').value,
             site: this.timesheet.get('site').value,
             start: this.timesheet.get('start').value,
             end: this.timesheet.get('end').value,
             pause: this.timesheet.get('pause').value,
-        })
+        }).then((data) => {
+            loader.dismiss();
+            loader = this.loadingCtrl.create({ content: 'Timesheet sent', dismissOnPageChange: true });
+            loader.present();
+            setTimeout(() => {loader.dismiss();}, 500);
+        });
 
       }
     }
