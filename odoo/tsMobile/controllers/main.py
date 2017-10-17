@@ -46,8 +46,7 @@ class TsMobile(http.Controller):
         '/ts_mobile/submit'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def submit(self, userCode=False, item=False, debug=False, **k):
-        _logger.info(userCode)
-        _logger.info(item)
-        employee_ids = request.env['hr.employee'].sudo().search([['mobile_code','=',userCode]],['name'])
+        employee_ids = request.env['hr.employee'].sudo().search_read([['mobile_code','=',userCode]],['name'])
         if employee_ids:
             employee_id = employee_ids[0]
+            _logger.info(employee_id)
