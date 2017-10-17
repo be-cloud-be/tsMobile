@@ -6,7 +6,7 @@
     'summary': 'Timesheet mobile controllers',
     'version': '0.1',
     'description': "",
-    'depends': [],
+    'depends': ['hr'],
     'data': [
         'views/hr_employee_view.xml',
     ],
