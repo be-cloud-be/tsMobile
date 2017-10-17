@@ -47,6 +47,6 @@ class TsMobile(http.Controller):
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def submit(self, userCode=False, item=False, debug=False, **k):
         employee_ids = request.env['hr.employee'].sudo().search_read([['mobile_code','=',userCode]],['name'])
+        _logger.info(employee_ids)
         if employee_ids:
             employee_id = employee_ids[0]
-            _logger.info(employee_id)
