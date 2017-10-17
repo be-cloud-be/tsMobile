@@ -21,7 +21,7 @@ class TsMobile(http.Controller):
         user_ids = request.env['hr.employee'].sudo().search_read([['mobile_code','=',userCode]],['name'])
         if user_ids:
             return { "name" : user_ids[0].name}
-    else:
+        else:
             return UserError("Invalid Code")
 
     @http.route([
