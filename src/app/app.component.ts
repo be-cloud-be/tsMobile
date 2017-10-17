@@ -3,11 +3,11 @@ import { Config, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
+import { MomentModule } from 'angular2-moment';
 
 import { LoginPage } from '../pages/login/login';
 
-import moment from "moment";
-import "moment/src/locale/fr";
+import * as moment from 'moment';
 
 @Component({
   templateUrl: 'app.html'
