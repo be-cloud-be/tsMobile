@@ -56,5 +56,5 @@ class TsMobile(http.Controller):
                 'project_id': item['site'],
                 'task_id': item['task'],
                 'unit_amount': 8,
-                'employee_id': employee_id,
+                'employee_id': employee_id.id,
             })
