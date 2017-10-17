@@ -27,11 +27,16 @@ export class SubmitPage {
       this.timesheet = this.formBuilder.group({
         date: [new Date().toISOString(), Validators.required],
         site: ['', Validators.required],
+        task: ['', Validators.required],
         start: ['07:30'],
         end: ['16:30'],
         pause: ['00:30'],
       });
       this.odoo.getSites().then((data : any) => this.sites = data.sites);
+    };
+
+    onchange_site(event: any) {
+        console.log(event);
     };
 
     logForm() {
@@ -44,6 +49,7 @@ export class SubmitPage {
         return this.odoo.submit({
             date: this.timesheet.get('date').value,
             site: this.timesheet.get('site').value,
+            task: this.timesheet.get('task').value,
             start: this.timesheet.get('start').value,
             end: this.timesheet.get('end').value,
             pause: this.timesheet.get('pause').value,
@@ -54,7 +60,7 @@ export class SubmitPage {
             setTimeout(() => {loader.dismiss();}, 500);
         });
 
-      }
-    }
+        };
+    };
 
 }

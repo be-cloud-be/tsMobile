@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 export interface ISubmission {
     date: Date,
     site: string,
+    task: string,
     start: string,
     end: string,
     pause: string,

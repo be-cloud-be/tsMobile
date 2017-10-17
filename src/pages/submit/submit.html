@@ -14,7 +14,13 @@
       <ion-item>
         <ion-label>Chantier</ion-label>
         <ion-select formControlName="site" interface="action-sheet">
-          <ion-option *ngFor="let site of sites" value="{{site.id}}">{{site.name}}</ion-option>
+          <ion-option *ngFor="let site of sites" value="{{site.id}}" (ionChange)="onchange_site($event)">{{site.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tâche</ion-label>
+        <ion-select formControlName="task" interface="action-sheet">
+          <ion-option *ngFor="let task of tasks" value="{{tasks.id}}">{{tasks.name}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
