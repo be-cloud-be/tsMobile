@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 export class OdooProvider {
 
   UserCode : number;
+  UserName : string;
 
   OdooURL = 'https://socoma.imply.lu';
 
@@ -20,8 +21,10 @@ export class OdooProvider {
   }
 
   setUserCode(userCode: number) {
-      this.jsonRPC('check_code',{'userCode' : userCode})
-      this.UserCode = userCode
+      this.jsonRPC('check_code',{'userCode' : userCode}).then((data) => {
+          this.UserCode = userCode;
+          this.UserName = data[0].name;
+      });
   }
 
   getSites() {
@@ -29,7 +32,7 @@ export class OdooProvider {
   }
 
   private jsonRPC(endpoint: string, params: any) {
-        return new Promise(resolve => {
+        return new Promise((resolve,reject) => {
           var body = {
               "jsonrpc":"2.0",
               "params": params
@@ -42,8 +45,11 @@ export class OdooProvider {
               .map(response => response.json())
               .subscribe(data => {
                 console.log(data);
-
-                resolve(data.result);
+                if(data.error) {
+                    reject(data.error.data);
+                } else {
+                    resolve(data.result);
+                }
             });
         });
     }
