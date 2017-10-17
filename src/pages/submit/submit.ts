@@ -32,7 +32,7 @@ export class SubmitPage {
         end: ['16:30'],
         pause: ['00:30'],
       });
-      this.timesheet.valueChanges.subscribe(data => {
+      this.timesheet.get('site').valueChanges.subscribe(data => {
           if(data.site) {
               this.odoo.getTasks(data.site).then((data : any) => {
                   this.tasks = data.tasks;
@@ -43,7 +43,6 @@ export class SubmitPage {
               this.timesheet.get('task').disable();
           }
       })
-      this.siteSelected = false;
       this.odoo.getSites().then((data : any) => this.sites = data.sites);
     };
 
