@@ -17,9 +17,7 @@ _logger = logging.getLogger(__name__)
 class TsMobile(http.Controller):
 
     @http.route([
-        '/sites',
-        '/sites/<int:userCode>',
-    ], type='json', auth="public", website=True)
+        '/sites'
+    ], type='json', auth='public', website=True, csrf=False)
     def sites(self, userCode=False, debug=False, **k):
-        _logger.info('Get Sites')
-        return request.env['project.project'].sudo().search_read([],['name','code'])
+        return { 'sites' : request.env['project.project'].sudo().search_read([],['name','code'])}
