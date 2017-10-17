@@ -24,18 +24,27 @@ export class OdooProvider {
   }
 
   getSites() {
-      return new Promise(resolve => {
-        var body = '{"jsonrpc":"2.0","method": "sites","params": [],"id": "1"}';
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+      return this.jsonRPC('sites','sites',[])
+  }
 
-        this.http
-            .post(this.OdooURL+'/sites', body, { headers: headers })
-            .map(response => response.json())
-            .subscribe(data => {
-              console.log(data);
-              resolve(data.result);
-          });
-      });
+  private jsonRPC(endpoint: string, method: string, params: Array<any>) {
+        return new Promise(resolve => {
+          var body = {
+              "jsonrpc":"2.0",
+              "method": method,
+              "params": params,
+              "id": "1"
+          };
+          var headers = new Headers();
+          headers.append('Content-Type', 'application/json');
+
+          this.http
+              .post(this.OdooURL+'/sites', JSON.stringify(body), { headers: headers })
+              .map(response => response.json())
+              .subscribe(data => {
+                console.log(data);
+                resolve(data.result);
+            });
+        });
     }
 }
