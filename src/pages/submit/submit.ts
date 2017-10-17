@@ -28,7 +28,7 @@ export class SubmitPage {
       this.timesheet = this.formBuilder.group({
         date: [new Date().toISOString(), Validators.required],
         site: ['', Validators.required],
-        task: ['', Validators.required],
+        task: [{value:'',disabled:true}, Validators.required],
         start: ['07:30'],
         end: ['16:30'],
         pause: ['00:30'],
