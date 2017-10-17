@@ -23,6 +23,8 @@ export class SubmitPage {
 
     sites : any;
 
+    siteSelected : boolean;
+
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, private odoo : OdooProvider) {
       this.timesheet = this.formBuilder.group({
         date: [new Date().toISOString(), Validators.required],
@@ -32,6 +34,10 @@ export class SubmitPage {
         end: ['16:30'],
         pause: ['00:30'],
       });
+      this.timesheet.valueChanges.subscribe(data => {
+          console.log('Form changes', data)
+      })
+      this.siteSelected = false;
       this.odoo.getSites().then((data : any) => this.sites = data.sites);
     };
 
