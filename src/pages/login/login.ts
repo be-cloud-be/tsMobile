@@ -40,7 +40,11 @@ export class LoginPage {
           // if the passcode is valid call `resolve()`
           return _t.odoo.setUserCode(Number(passcode)).then((data) => {
                 loader.dismiss();
-          });
+                _t.nav.setRoot('HomePage');
+          }).catch((error) => {
+                loader.dismiss();
+                _t.nav.setRoot('LoginPage');
+          })
         }
       }
     }
