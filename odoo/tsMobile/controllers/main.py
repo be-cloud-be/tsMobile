@@ -12,8 +12,6 @@ from odoo.exceptions import UserError
 from odoo.http import request
 from odoo.tools import html2plaintext
 
-_logger = logging.getLogger(__name__)
-
 class TsMobile(http.Controller):
 
     @http.route([

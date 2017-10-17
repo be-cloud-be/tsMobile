@@ -6,7 +6,7 @@
     'summary': 'Timesheet mobile controllers',
     'version': '0.1',
     'description': "",
-    'depends': [''],
+    'depends': [],
     'data': [
     ],
     'demo': [

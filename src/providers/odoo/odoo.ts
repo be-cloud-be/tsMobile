@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+
 import 'rxjs/add/operator/map';
 
 /*
@@ -13,6 +14,8 @@ export class OdooProvider {
 
   UserCode : number;
 
+  OdooURL = 'https://socoma.imply.lu';
+
   constructor(public http: Http) {
   }
 
@@ -21,19 +24,19 @@ export class OdooProvider {
   }
 
   getSites() {
-      console.log('getSites for user '+this.UserCode)
       return new Promise(resolve => {
+        console.log(this.OdooURL+'/sites');
         // We're using Angular HTTP provider to request the data,
         // then on the response, it'll map the JSON data to a parsed JS object.
         // Next, we process the data and resolve the promise with the new data.
-        this.http.get('/assets/dummy/sites.json')
+        this.http.get(this.OdooURL+'/sites')
           .map(res => res.json())
           .subscribe(data => {
+            console.log(data);
             // we've got back the raw data, now generate the core schedule data
             // and save the data for later reference
             resolve(data);
           });
-      });
+        });
     }
-
 }
