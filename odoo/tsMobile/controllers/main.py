@@ -37,3 +37,4 @@ class TsMobile(http.Controller):
         employee_ids = request.env['hr.employee'].sudo().search([['mobile_code','=',userCode]],['name'])
         if employee_ids:
             employee_id = employee_ids[0]
+            
