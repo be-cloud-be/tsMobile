@@ -21,7 +21,6 @@ export class SubmitPage {
 
     timesheet : FormGroup;
     sites : any;
-    siteSelected : boolean;
     tasks : any;
 
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, private odoo : OdooProvider) {
@@ -37,19 +36,15 @@ export class SubmitPage {
           if(data.site) {
               this.odoo.getTasks(data.site).then((data : any) => {
                   this.tasks = data.tasks;
-                  this.siteSelected = true;
+                  this.timesheet.get('task').enable();
               });
           } else {
               this.tasks = [];
-              this.siteSelected = false;
+              this.timesheet.get('task').disable();
           }
       })
       this.siteSelected = false;
       this.odoo.getSites().then((data : any) => this.sites = data.sites);
-    };
-
-    onchange_site(event: any) {
-        console.log(event);
     };
 
     logForm() {
