@@ -27,4 +27,4 @@ _logger = logging.getLogger(__name__)
 class HrEmployee(models.Model):
     _inherit = ['hr.employee']
 
-    mobile_code = fields.String('Mobile Code')
+    mobile_code = fields.Char('Mobile Code')
