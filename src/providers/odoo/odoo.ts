@@ -34,7 +34,7 @@ export class OdooProvider {
             .map(response => response.json())
             .subscribe(data => {
               console.log(data);
-              resolve(data);
+              resolve(data.result);
           });
       });
     }
