@@ -18,9 +18,9 @@ class TsMobile(http.Controller):
         '/ts_mobile/check_code'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def check_code(self, userCode=False, debug=False, **k):
-        user_ids = request.env['hr.employee'].sudo().search_read([['mobile_code','=',userCode]],['name'])
-        if user_ids:
-            return { "name" : user_ids[0]['name']}
+        employee_ids = request.env['hr.employee'].sudo().search_read([['mobile_code','=',userCode]],['name'])
+        if employee_ids:
+            return { "name" : employee_ids[0]['name']}
         else:
             raise AccessError("Invalid Code")
 
@@ -29,3 +29,11 @@ class TsMobile(http.Controller):
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def sites(self, userCode=False, debug=False, **k):
         return { 'sites' : request.env['project.project'].sudo().search_read([],['name','code'])}
+
+    @http.route([
+        '/ts_mobile/submit'
+    ], type='json', auth='public', website=True, csrf=False, cors="*")
+    def submit(self, userCode=False, itme=False, debug=False, **k):
+        employee_ids = request.env['hr.employee'].sudo().search([['mobile_code','=',userCode]],['name'])
+        if employee_ids:
+            employee_id = employee_ids[0]

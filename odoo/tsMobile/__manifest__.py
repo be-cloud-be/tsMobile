@@ -6,9 +6,10 @@
     'summary': 'Timesheet mobile controllers',
     'version': '0.1',
     'description': "",
-    'depends': ['hr'],
+    'depends': ['hr','project'],
     'data': [
         'views/hr_employee_view.xml',
+        'views/project_task_view.xml',
     ],
     'demo': [
     ],
