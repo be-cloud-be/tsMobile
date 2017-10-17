@@ -21,7 +21,7 @@ export class LoginPage {
 
     passcodeOptions: IonPasscodeOptions;
 
-    constructor(private nav: NavController, private odoo : OdooProvider) { }
+    constructor(public loadingCtrl: LoadingController, private nav: NavController, private odoo : OdooProvider) { }
 
     ngOnInit() {
 
