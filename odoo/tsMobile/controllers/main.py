@@ -17,7 +17,7 @@ class TsMobile(http.Controller):
     @http.route([
         '/check_code'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
-    def check_code(self, userCode, debug=False, **k):
+    def check_code(self, userCode=False, debug=False, **k):
         user_ids = request.env['hr.employee'].sudo().search_read([['mobile_code','=',userCode]],['name'])
         if user_ids:
             return { "name" : user_ids[0].name}

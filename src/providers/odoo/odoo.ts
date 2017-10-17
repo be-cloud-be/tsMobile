@@ -20,21 +20,19 @@ export class OdooProvider {
   }
 
   setUserCode(userCode: number) {
-      this.jsonRPC('check_code','check_code',{'userCode' : userCode})
+      this.jsonRPC('check_code',{'userCode' : userCode})
       this.UserCode = userCode
   }
 
   getSites() {
-      return this.jsonRPC('sites','sites',{'userCode' : this.UserCode})
+      return this.jsonRPC('sites',{'userCode' : this.UserCode})
   }
 
-  private jsonRPC(endpoint: string, method: string, params: any) {
+  private jsonRPC(endpoint: string, params: any) {
         return new Promise(resolve => {
           var body = {
               "jsonrpc":"2.0",
-              "method": method,
-              "params": params,
-              "id": "1"
+              "params": params
           };
           var headers = new Headers();
           headers.append('Content-Type', 'application/json');
@@ -44,7 +42,7 @@ export class OdooProvider {
               .map(response => response.json())
               .subscribe(data => {
                 console.log(data);
-                
+
                 resolve(data.result);
             });
         });
