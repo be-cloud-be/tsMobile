@@ -50,11 +50,15 @@ class TsMobile(http.Controller):
         if employee_ids:
             employee_id = employee_ids[0]
             _logger.info(item)
+            start_float = int(item['start'][:2])+int(item['start'][-2:])/60
+            end_float = int(item['end'][:2])+int(item['end'][-2:])/60
+            pause_float = int(item['pause'][:2])+int(item['pause'][-2:])/60
+
             request.env['account.analytic.line'].sudo().create({
                 'name': 'tsMobile Line',
                 'date': item['date'],
                 'project_id': int(item['site']),
                 'task_id': int(item['task']),
-                'unit_amount': 8,
+                'unit_amount': end_float-start_float-pause_float,
                 'employee_id': employee_id.id,
             })
