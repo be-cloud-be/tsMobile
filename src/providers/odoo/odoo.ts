@@ -40,7 +40,7 @@ export class OdooProvider {
   }
 
   submit(item : ISubmission) {
-      console.log('Submit : ',item);
+      console.log('Submit for ',this.UserName,' : ',item);
   }
 
   private jsonRPC(endpoint: string, params: any) {
