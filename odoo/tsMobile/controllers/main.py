@@ -12,6 +12,8 @@ from odoo.exceptions import UserError, AccessError
 from odoo.http import request
 from odoo.tools import html2plaintext
 
+_logger = logging.getLogger(__name__)
+
 class TsMobile(http.Controller):
 
     @http.route([
@@ -34,8 +36,9 @@ class TsMobile(http.Controller):
         '/ts_mobile/tasks'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def tasks(self, userCode=False, site=False, debug=False, **k):
+        _logger.info("Tasks for site %s" % site)
         if site :
-            return { 'tasks' : request.env['project.task'].sudo().search_read([['stage_id','=','456'],['project_id','=',site]],['name'])} #ie "En cours"
+            return { 'tasks' : request.env['project.task'].sudo().search_read([['stage_id','=','456'],['project_id.id','=',site]],['name'])} #ie "En cours"
         else :
             raise UserError("Site requiered")
 
