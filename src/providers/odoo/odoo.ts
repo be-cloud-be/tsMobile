@@ -40,6 +40,10 @@ export class OdooProvider {
       return this.jsonRPC('/ts_mobile/sites',{'userCode' : this.UserCode})
   }
 
+  getTasks(site : string) {
+      return this.jsonRPC('/ts_mobile/tasks',{'userCode' : this.UserCode, 'site' : site})
+  }
+
   submit(item : ISubmission) {
       console.log('Submit for ',this.UserName,' : ',item);
       return this.jsonRPC('/ts_mobile/submit',{'userCode' : this.UserCode, 'item' : item})

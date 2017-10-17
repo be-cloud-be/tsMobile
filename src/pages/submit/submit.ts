@@ -20,10 +20,9 @@ import { OdooProvider, ISubmission } from '../../providers/odoo/odoo';
 export class SubmitPage {
 
     timesheet : FormGroup;
-
     sites : any;
-
     siteSelected : boolean;
+    tasks : any;
 
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, private odoo : OdooProvider) {
       this.timesheet = this.formBuilder.group({
@@ -35,7 +34,15 @@ export class SubmitPage {
         pause: ['00:30'],
       });
       this.timesheet.valueChanges.subscribe(data => {
-          console.log('Form changes', data)
+          if(data.site) {
+              this.odoo.getTasks(data.site).then((data : any) => {
+                  this.tasks = data.tasks;
+                  this.siteSelected = true;
+              });
+          } else {
+              this.tasks = [];
+              this.siteSelected = false;
+          }
       })
       this.siteSelected = false;
       this.odoo.getSites().then((data : any) => this.sites = data.sites);

@@ -31,10 +31,18 @@ class TsMobile(http.Controller):
         return { 'sites' : request.env['project.project'].sudo().search_read([],['name','code'])}
 
     @http.route([
+        '/ts_mobile/tasks'
+    ], type='json', auth='public', website=True, csrf=False, cors="*")
+    def tasks(self, userCode=False, site=False, debug=False, **k):
+        if site :
+            return { 'tasks' : request.env['project.task'].sudo().search_read([['stage_id','=','456'],['project_id','=',site]],['name'])} #ie "En cours"
+        else :
+            raise UserError("Site requiered")
+
+    @http.route([
         '/ts_mobile/submit'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
-    def submit(self, userCode=False, itme=False, debug=False, **k):
+    def submit(self, userCode=False, item=False, debug=False, **k):
         employee_ids = request.env['hr.employee'].sudo().search([['mobile_code','=',userCode]],['name'])
         if employee_ids:
             employee_id = employee_ids[0]
-            
