@@ -32,7 +32,8 @@ export class SubmitPage {
         end: ['16:30'],
         pause: ['00:30'],
       });
-      this.timesheet.get('site').valueChanges.subscribe(data => {
+      this.timesheet.controls.site.valueChanges.subscribe(data => {
+          console.log(data);
           if(data.site) {
               this.odoo.getTasks(data.site).then((data : any) => {
                   this.tasks = data.tasks;
