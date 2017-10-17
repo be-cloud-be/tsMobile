@@ -39,7 +39,7 @@ class TsMobile(http.Controller):
     def tasks(self, userCode=False, site=False, debug=False, **k):
         _logger.info("Tasks for site %s" % site)
         if site :
-            return { 'tasks' : request.env['project.task'].sudo().search_read([['stage_id','=','456'],['project_id.id','=',site]],['name'])} #ie "En cours"
+            return { 'tasks' : request.env['project.task'].sudo().search_read([['stage_id.id','=','456'],['project_id.id','=',site]],['name'])} #ie "En cours"
         else :
             raise UserError("Site requiered")
 
