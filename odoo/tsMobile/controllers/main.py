@@ -20,7 +20,7 @@ class TsMobile(http.Controller):
     def check_code(self, userCode=False, debug=False, **k):
         user_ids = request.env['hr.employee'].sudo().search_read([['mobile_code','=',userCode]],['name'])
         if user_ids:
-            return { "name" : user_ids[0].name}
+            return { "name" : user_ids[0]['name']}
         else:
             return UserError("Invalid Code")
 
