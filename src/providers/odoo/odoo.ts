@@ -3,6 +3,14 @@ import { Http,Headers } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
+export interface ISubmission {
+    date: Date,
+    site: string,
+    start: string,
+    end: string,
+    pause: string,
+}
+
 /*
   Generated class for the OdooProvider provider.
 
@@ -29,6 +37,10 @@ export class OdooProvider {
 
   getSites() {
       return this.jsonRPC('/sites',{'userCode' : this.UserCode})
+  }
+
+  submit(item : ISubmission) {
+      console.log('Submit : ',item);
   }
 
   private jsonRPC(endpoint: string, params: any) {

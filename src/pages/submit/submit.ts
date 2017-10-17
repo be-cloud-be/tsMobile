@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { OdooProvider } from '../../providers/odoo/odoo';
+import { OdooProvider, ISubmission } from '../../providers/odoo/odoo';
 
 /**
  * Generated class for the SubmitPage page.
@@ -37,11 +37,14 @@ export class SubmitPage {
     logForm() {
       if(this.timesheet.valid){
         // (optional) show a message to your users while you are verifying the passcode
-        let loader = this.loadingCtrl.create({ content: 'Pointage envoyé : ' + JSON.stringify(this.timesheet.value), dismissOnPageChange: true });
-        loader.present();
-        setTimeout(() => {
-          loader.dismiss();
-        }, 2000);
+        this.odoo.submit({
+            date: this.timesheet.get('date').value,
+            site: this.timesheet.get('site').value,
+            start: this.timesheet.get('start').value,
+            end: this.timesheet.get('end').value,
+            pause: this.timesheet.get('pause').value,
+        })
+
       }
     }
 
