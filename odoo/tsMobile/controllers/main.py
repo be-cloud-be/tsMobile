@@ -50,3 +50,11 @@ class TsMobile(http.Controller):
         _logger.info(employee_ids)
         if employee_ids:
             employee_id = employee_ids[0]
+            request.env['account.analytic.line'].sudo().create({
+                'name': 'tsMobile Line',
+                'date': item['date'],
+                'project_id': item['site'],
+                'task_id': item['task'],
+                'unit_amount': 8,
+                'employee_id': employee_id,
+            })
