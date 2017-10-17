@@ -49,13 +49,12 @@ class TsMobile(http.Controller):
         employee_ids = request.env['hr.employee'].sudo().search([['mobile_code','=',userCode]])
         if employee_ids:
             employee_id = employee_ids[0]
-            _logger.info(json.loads(item))
-            item = json.loads(item)
+            _logger.info(item)
             request.env['account.analytic.line'].sudo().create({
                 'name': 'tsMobile Line',
                 'date': item['date'],
-                'project_id': item['site'],
-                'task_id': item['task'],
+                'project_id': int(item['site']),
+                'task_id': int(item['task']),
                 'unit_amount': 8,
                 'employee_id': employee_id.id,
             })
