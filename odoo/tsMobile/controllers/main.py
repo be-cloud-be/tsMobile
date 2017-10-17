@@ -37,7 +37,6 @@ class TsMobile(http.Controller):
         '/ts_mobile/tasks'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def tasks(self, userCode=False, site=False, debug=False, **k):
-        _logger.info("Tasks for site %s" % site)
         if site :
             return { 'tasks' : request.env['project.task'].sudo().search_read([['stage_id.id','=','456'],['project_id.id','=',site]],['name'])} #ie "En cours"
         else :
@@ -47,6 +46,8 @@ class TsMobile(http.Controller):
         '/ts_mobile/submit'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def submit(self, userCode=False, item=False, debug=False, **k):
+        _logger.info(userCode)
+        _logger.info(item)
         employee_ids = request.env['hr.employee'].sudo().search([['mobile_code','=',userCode]],['name'])
         if employee_ids:
             employee_id = employee_ids[0]
