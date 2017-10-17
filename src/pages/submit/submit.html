@@ -20,7 +20,7 @@
       <ion-item>
         <ion-label>Tâche</ion-label>
         <ion-select formControlName="task" interface="action-sheet">
-          <ion-option *ngFor="let task of tasks" value="{{tasks.id}}">{{tasks.name}}</ion-option>
+          <ion-option *ngFor="let task of tasks" value="{{task.id}}">{{task.name}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
