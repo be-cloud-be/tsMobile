@@ -20,6 +20,7 @@ export class OdooProvider {
   }
 
   setUserCode(userCode: number) {
+      this.jsonRPC('check_code','check_code',{'userCode' : userCode})
       this.UserCode = userCode
   }
 
@@ -43,6 +44,7 @@ export class OdooProvider {
               .map(response => response.json())
               .subscribe(data => {
                 console.log(data);
+                
                 resolve(data.result);
             });
         });
