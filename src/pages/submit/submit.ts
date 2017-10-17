@@ -34,8 +34,8 @@ export class SubmitPage {
       });
       this.timesheet.controls.site.valueChanges.subscribe(data => {
           console.log(data);
-          if(data.site) {
-              this.odoo.getTasks(data.site).then((data : any) => {
+          if(data) {
+              this.odoo.getTasks(data).then((data : any) => {
                   this.tasks = data.tasks;
                   this.timesheet.get('task').enable();
               });
