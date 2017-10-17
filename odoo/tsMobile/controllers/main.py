@@ -22,7 +22,7 @@ class TsMobile(http.Controller):
         if user_ids:
             return { "name" : user_ids[0]['name']}
         else:
-            return AccessError("Invalid Code")
+            raise AccessError("Invalid Code")
 
     @http.route([
         '/sites'
