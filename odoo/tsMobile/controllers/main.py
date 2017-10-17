@@ -16,6 +16,6 @@ class TsMobile(http.Controller):
 
     @http.route([
         '/sites'
-    ], type='json', auth='public', website=True, csrf=False)
+    ], type='json', auth='public', website=True, csrf=False, cors="*")
     def sites(self, userCode=False, debug=False, **k):
         return { 'sites' : request.env['project.project'].sudo().search_read([],['name','code'])}
