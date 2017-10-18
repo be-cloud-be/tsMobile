@@ -17,7 +17,7 @@
     <ion-item-sliding *ngFor="let item of items">
       <ion-item>
         <h2>{{item.date | amDateFormat:'dddd, DD MM'}}</h2>
-        <p>{{item.projet_id.name}} - {{item.task_id.name}}</p>
+        <p>{{item.projet_id[1]}} - {{item.task_id[1]}}</p>
         <p item-right>Début - {{item.mts_start}}</p>
         <p item-right>Fin - {{item.mts_end}}</p>
         <p item-right>Pause - {{item.mts_pause}}</p>
