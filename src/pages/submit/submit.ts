@@ -47,7 +47,7 @@ export class SubmitPage {
       this.odoo.getSites().then((data : any) => this.sites = data.sites);
     };
 
-    ionSelect() {
+    checkLoggedIn() {
           if(!this.odoo.isLoggedIn()) {
             this.nav.setRoot('LoginPage');
           }
