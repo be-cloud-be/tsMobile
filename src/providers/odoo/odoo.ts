@@ -55,6 +55,10 @@ export class OdooProvider {
       return this.jsonRPC('/ts_mobile/submit',{'userCode' : this.UserCode, 'item' : item}).then(() => this.updateList())
   }
 
+  delete(itemId : string) {
+      return this.jsonRPC('/ts_mobile/delete',{'userCode' : this.UserCode, 'itemId' : itemId}).then(() => this.updateList())
+  }
+
   updateList() {
       this.jsonRPC('/ts_mobile/list',{'userCode' : this.UserCode}).then((data : any)=>{
           this.ItemList = data.items;

@@ -69,6 +69,15 @@ class TsMobile(http.Controller):
             })
 
     @http.route([
+        '/ts_mobile/delete'
+    ], type='json', auth='public', website=True, csrf=False, cors="*")
+    def delete(self, userCode=False, itemId=False, debug=False, **k):
+        if itemId:
+            request.env['account.analytic.line'].sudo().browse(itemId).unlink();
+        else:
+            raise UserError("Valid ItemId requiered")
+
+    @http.route([
         '/ts_mobile/list'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def list(self, userCode=False, debug=False, **k):

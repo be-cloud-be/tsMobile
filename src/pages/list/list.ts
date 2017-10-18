@@ -21,4 +21,7 @@ export class ListPage {
   constructor(public nav: NavController, public navParams: NavParams, private odoo : OdooProvider) {
   }
 
+  duplicateItem(id : string){
+      console.log('duplicateItem : '+id);
+  }
 }
