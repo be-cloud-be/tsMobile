@@ -63,6 +63,9 @@ class TsMobile(http.Controller):
                 'task_id': int(item['task']),
                 'unit_amount': end_float-start_float-pause_float,
                 'employee_id': employee_id.id,
+                'mts_start' : item['start'],
+                'mts_end' : item['end'],
+                'mts_pause' : item['pause'],
             })
 
     @http.route([
@@ -71,6 +74,6 @@ class TsMobile(http.Controller):
     def list(self, userCode=False, debug=False, **k):
         line_ids = request.env['account.analytic.line'].sudo().search_read(
             [['employee_id.mobile_code','=',userCode],['date','>',fields.Date.to_string(date.today() + relativedelta(days=-10))]],
-            ['name','date','project_id','task_id','unit_amount','employee_id']
+            ['name','date','project_id','task_id','unit_amount','employee_id','mts_start','mts_end','mts_pause']
         )
         return line_ids

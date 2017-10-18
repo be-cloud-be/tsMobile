@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OdooProvider, ISubmission } from '../../providers/odoo/odoo';
 
 /**
  * Generated class for the ListPage page.
@@ -17,7 +18,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  items : any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private odoo : OdooProvider) {
+
   }
 
   ionViewDidLoad() {
