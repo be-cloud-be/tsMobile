@@ -23,7 +23,7 @@ export class SubmitPage {
     sites : any;
     tasks : any;
 
-    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, private odoo : OdooProvider) {
+    constructor(public nav: NavController, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, private odoo : OdooProvider) {
       this.timesheet = this.formBuilder.group({
         date: [new Date().toISOString(), Validators.required],
         site: ['', Validators.required],
@@ -46,6 +46,12 @@ export class SubmitPage {
       })
       this.odoo.getSites().then((data : any) => this.sites = data.sites);
     };
+
+    ionViewCanEnter() {
+          if(!this.odoo.isLoggedIn()) {
+            this.nav.setRoot('LoginPage');
+          }
+     }
 
     logForm() {
 

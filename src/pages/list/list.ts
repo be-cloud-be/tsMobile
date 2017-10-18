@@ -20,9 +20,15 @@ export class ListPage {
 
   items : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private odoo : OdooProvider) {
-      this.odoo.getList().then((data : any) => this.items = data.items);
+  constructor(public nav: NavController, public navParams: NavParams, private odoo : OdooProvider) {
+    this.odoo.getList().then((data : any) => this.items = data.items);
   }
+
+  ionViewCanEnter() {
+        if(!this.odoo.isLoggedIn()) {
+          this.nav.setRoot('LoginPage');
+        }
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListPage');
