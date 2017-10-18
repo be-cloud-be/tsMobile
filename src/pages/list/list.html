@@ -18,7 +18,7 @@
         <ion-list-header style="font-weight:bold; font-size:120%;color:white;">
             10 derniers jours
         </ion-list-header>
-        <ion-item-sliding *ngFor="let item of items">
+        <ion-item-sliding *ngFor="let item of odoo.ItemList">
           <ion-item>
             <h2>{{item.date | amDateFormat:'dddd, DD MMMM'}}</h2>
             <p>{{item.project_id[1]}} - {{item.task_id[1]}}</p>

@@ -46,12 +46,6 @@ export class SubmitPage {
       this.odoo.getSites().then((data : any) => this.sites = data.sites);
     };
 
-    checkLoggedIn() {
-          if(!this.odoo.isLoggedIn()) {
-            this.nav.setRoot('LoginPage');
-          }
-     }
-
     logForm() {
 
       if(this.timesheet.valid){
@@ -75,9 +69,5 @@ export class SubmitPage {
 
         };
     };
-
-    ionViewDidLoad() {
-      console.log('ionViewDidLoad SubmitPage');
-    }
 
 }

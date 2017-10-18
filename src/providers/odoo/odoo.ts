@@ -26,11 +26,12 @@ export class OdooProvider {
 
   OdooURL = 'https://socoma.imply.lu';
 
+  ItemList : Array<any>;
+
   constructor(public http: Http) {
   }
 
   isLoggedIn() {
-      console.log('Check Logged In : ' + this.UserCode );
       return this.UserCode && this.UserCode != 0;
   }
 
@@ -38,6 +39,7 @@ export class OdooProvider {
       return this.jsonRPC('/ts_mobile/check_code',{'userCode' : userCode}).then((data) => {
           this.UserCode = userCode;
           this.UserName = data['name'];
+          this.updateList();
       });
   }
 
@@ -50,12 +52,13 @@ export class OdooProvider {
   }
 
   submit(item : ISubmission) {
-      console.log('Submit for ',this.UserName,' : ',item);
-      return this.jsonRPC('/ts_mobile/submit',{'userCode' : this.UserCode, 'item' : item})
+      return this.jsonRPC('/ts_mobile/submit',{'userCode' : this.UserCode, 'item' : item}).then(() => this.updateList())
   }
 
-  getList() {
-      return this.jsonRPC('/ts_mobile/list',{'userCode' : this.UserCode})
+  updateList() {
+      this.jsonRPC('/ts_mobile/list',{'userCode' : this.UserCode}).then((data : any)=>{
+          this.ItemList = data.items;
+      })
   }
 
   private jsonRPC(endpoint: string, params: any) {

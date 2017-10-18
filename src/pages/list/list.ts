@@ -18,20 +18,7 @@ import { OdooProvider } from '../../providers/odoo/odoo';
 })
 export class ListPage {
 
-  items : any;
-
   constructor(public nav: NavController, public navParams: NavParams, private odoo : OdooProvider) {
-    this.odoo.getList().then((data : any) => this.items = data.items);
-  }
-
-  checkLoggedIn() {
-        if(!this.odoo.isLoggedIn()) {
-          this.nav.setRoot('LoginPage');
-        }
-   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListPage');
   }
 
 }
