@@ -30,6 +30,7 @@ export class OdooProvider {
   }
 
   isLoggedIn() {
+      console.log('UserCode : ' + this.UserCode )
       return this.UserCode != 0;
   }
 
