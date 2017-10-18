@@ -22,9 +22,11 @@
           <ion-item>
             <h2>{{item.date | amDateFormat:'dddd, DD MMMM'}}</h2>
             <p>{{item.project_id[1]}} - {{item.task_id[1]}}</p>
-            <p>Début - {{item.mts_start}}</p>
-            <p>Fin - {{item.mts_end}}</p>
-            <p>Pause - {{item.mts_pause}}</p>
+            <table>
+                <tr><td>Début</td><td>{{item.mts_start}}</td></tr>
+                <tr><td>Fin</td><td>{{item.mts_end}}</td></tr>
+                <tr><td>Pause</td><td>{{item.mts_pause}}</td></tr>
+            </table>
           </ion-item>
           <ion-item-options side="right">
             <button ion-button color="primary" icon-add-circle>
