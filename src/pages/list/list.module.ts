@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule, List } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular';
 import { ListPage } from './list';
 import { MomentModule } from 'angular2-moment';
 
@@ -10,7 +10,6 @@ import { MomentModule } from 'angular2-moment';
   imports: [
     IonicPageModule.forChild(ListPage),
     MomentModule,
-    List,
   ],
 })
 export class ListPageModule {}
