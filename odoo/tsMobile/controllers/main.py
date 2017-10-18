@@ -31,7 +31,7 @@ class TsMobile(http.Controller):
         '/ts_mobile/sites'
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def sites(self, userCode=False, debug=False, **k):
-        return { 'sites' : request.env['project.project'].sudo().search_read([],['name','code'])}
+        return { 'sites' : request.env['project.project'].sudo().search_read([['task_ids.stage_id.id','=','456']],['name','code'])}
 
     @http.route([
         '/ts_mobile/tasks'
