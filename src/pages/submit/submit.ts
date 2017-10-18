@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { OdooProvider, ISubmission } from '../../providers/odoo/odoo';
+import { OdooProvider } from '../../providers/odoo/odoo';
 
 /**
  * Generated class for the SubmitPage page.
