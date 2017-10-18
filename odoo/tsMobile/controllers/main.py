@@ -76,4 +76,4 @@ class TsMobile(http.Controller):
             [['employee_id.mobile_code','=',userCode],['date','>',fields.Date.to_string(date.today() + relativedelta(days=-10))]],
             ['name','date','project_id','task_id','unit_amount','employee_id','mts_start','mts_end','mts_pause']
         )
-        return line_ids
+        return { 'items' : line_ids }

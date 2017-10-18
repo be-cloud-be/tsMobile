@@ -29,7 +29,7 @@ export class SubmitPage {
         site: ['', Validators.required],
         task: [{value:'',disabled:true}, Validators.required],
         start: ['07:30'],
-        end: ['16:30'],
+        end: ['16:00'],
         pause: ['00:30'],
       });
       this.timesheet.controls.site.valueChanges.subscribe(data => {

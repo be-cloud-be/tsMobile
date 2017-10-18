@@ -21,7 +21,7 @@ export class ListPage {
   items : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private odoo : OdooProvider) {
-
+      this.odoo.getList().then((data : any) => this.items = data);
   }
 
   ionViewDidLoad() {
