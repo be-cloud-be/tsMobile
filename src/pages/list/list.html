@@ -16,13 +16,13 @@
 <ion-content padding>
     <ion-list>
         <ion-list-header style="font-weight:bold; font-size:120%;">
-            Envois des 10 derniers jours
+            10 derniers jours
         </ion-list-header>
         <ion-item-sliding *ngFor="let item of items">
           <ion-item>
             <h2>{{item.date | amDateFormat:'dddd, DD MMMM'}}</h2>
             <p>{{item.project_id[1]}} - {{item.task_id[1]}}</p>
-            <table>
+            <table style="width:100%">
                 <tr><td>Début</td><td>{{item.mts_start}}</td></tr>
                 <tr><td>Fin</td><td>{{item.mts_end}}</td></tr>
                 <tr><td>Pause</td><td>{{item.mts_pause}}</td></tr>
