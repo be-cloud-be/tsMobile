@@ -5,6 +5,7 @@ import itertools
 import pytz
 import babel.dates
 from collections import OrderedDict
+from datetime import date
 from dateutil.relativedelta import relativedelta
 
 from odoo import http, fields, _
