@@ -69,7 +69,7 @@ class TsMobile(http.Controller):
     ], type='json', auth='public', website=True, csrf=False, cors="*")
     def list(self, userCode=False, debug=False, **k):
         line_ids = request.env['account.analytic.line'].sudo().search_read(
-            [['employee_id.mobile_code','=',userCode],['date','>',fields.Date.today() + relativedelta(days=-10)]],
+            [['employee_id.mobile_code','=',userCode],['date','>',fields.Date.to_string(date.today() + relativedelta(days=-10))]],
             ['name','date','project_id','task_id','unit_amount','employee_id']
         )
         return line_ids
