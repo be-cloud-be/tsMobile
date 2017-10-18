@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, List } from 'ionic-angular';
 import { OdooProvider, ISubmission } from '../../providers/odoo/odoo';
+import { MomentModule } from 'angular2-moment';
 
 /**
  * Generated class for the ListPage page.
