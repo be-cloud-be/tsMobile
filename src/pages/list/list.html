@@ -29,11 +29,11 @@
             </table>
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button color="primary" icon-add-circle (click)="duplicateItem({{item.id}})">
+            <button ion-button color="primary" icon-add-circle (click)="duplicateItem(item.id)">
               <ion-icon name="add-circle"></ion-icon>
               Dupliquer
             </button>
-            <button ion-button color="danger" icon-trash (click)="odoo.delete({{item.id}})">
+            <button ion-button color="danger" icon-trash (click)="odoo.delete(item.id)">
               <ion-icon name="trash"></ion-icon>
               Supprimer
             </button>
