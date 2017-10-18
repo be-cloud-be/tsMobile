@@ -65,9 +65,8 @@ import { Component, Input } from '@angular/core';
     .ion-passcode-container {
       display: flex;
       flex-direction: column;
-      justify-content: center; 
+      justify-content: center;
       height: 100%;
-      background: linear-gradient(to bottom right, #9e1654 0%, #db5857 85%);
       color: white;
       text-align: center;
     }
@@ -158,7 +157,7 @@ import { Component, Input } from '@angular/core';
       10%, 90% {
         transform: translate3d(-1px, 0, 0);
       }
-      
+
       20%, 80% {
         transform: translate3d(3px, 0, 0);
       }
