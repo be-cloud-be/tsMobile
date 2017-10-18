@@ -16,10 +16,10 @@
 <ion-content padding>
     <ion-item-sliding *ngFor="let item of items">
       <ion-item>
-        <h2>{{item.date | amDateFormat:'LL'}}</h2>
-        <p>{{item.mts_start}}</p>
-        <p>{{item.mts_end}}</p>
-        <p>{{item.mts_pause}}</p>
+        <h2>{{item.date | amDateFormat:'dddd, dd mm'}}</h2>
+        <p item-right>Début - {{item.mts_start}}</p>
+        <p item-right>Fin - {{item.mts_end}}</p>
+        <p item-right>Pause - {{item.mts_pause}}</p>
       </ion-item>
       <ion-item-options>
         <button ion-button color="light" icon-start>
