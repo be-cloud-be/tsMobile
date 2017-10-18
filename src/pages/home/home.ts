@@ -20,7 +20,13 @@ export class HomePage {
     constructor(public nav: NavController, private odoo : OdooProvider) {
     }
 
-    ionViewCanEnter() {
+    ionViewWillEnter() {
+        if(!this.odoo.isLoggedIn()) {
+          this.nav.setRoot('LoginPage');
+        }
+    }
+
+    checkLoggedIn() {
         if(!this.odoo.isLoggedIn()) {
           this.nav.setRoot('LoginPage');
         }
