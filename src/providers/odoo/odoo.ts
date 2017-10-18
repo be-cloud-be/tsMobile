@@ -29,6 +29,10 @@ export class OdooProvider {
   constructor(public http: Http) {
   }
 
+  isLoggedIn() {
+      return this.UserCode != 0;
+  }
+
   setUserCode(userCode: number) {
       return this.jsonRPC('/ts_mobile/check_code',{'userCode' : userCode}).then((data) => {
           this.UserCode = userCode;
