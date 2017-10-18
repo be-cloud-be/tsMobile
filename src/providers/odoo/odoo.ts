@@ -31,7 +31,7 @@ export class OdooProvider {
 
   isLoggedIn() {
       console.log('Check Logged In : ' + this.UserCode );
-      return this.UserCode != 0;
+      return this.UserCode && this.UserCode != 0;
   }
 
   setUserCode(userCode: number) {
