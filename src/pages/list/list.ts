@@ -22,6 +22,7 @@ export class ListPage {
   }
 
   duplicateItem(id : string){
-      console.log('duplicateItem : '+id);
+      console.log('duplicateItem : '+this.nav.getViews());
+      this.odoo.ItemList[id];
   }
 }

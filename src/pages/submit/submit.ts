@@ -46,6 +46,10 @@ export class SubmitPage {
       this.odoo.getSites().then((data : any) => this.sites = data.sites);
     };
 
+    duplicateItem(site : string, task : string, start : string, end : string, pause : string) {
+        
+    }
+
     logForm() {
 
       if(this.timesheet.valid){
