@@ -14,8 +14,8 @@ import { OdooProvider } from '../../providers/odoo/odoo';
 })
 export class HomePage {
 
-    tab1Root = SubmitPage;
-    tab2Root = ListPage;
+    tab1Root = ListPage;
+    tab2Root = SubmitPage;
 
     constructor(public nav: NavController, private odoo : OdooProvider) {
     }
