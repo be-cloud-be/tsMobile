@@ -1,6 +1,6 @@
 <ion-content padding>
     <ion-tabs>
-        <ion-tab [root]="tab1Root" tabTitle="List" tabIcon="list"></ion-tab>
-        <ion-tab [root]="tab2Root" tabTitle="Submit" tabIcon="add"></ion-tab>
+        <ion-tab [root]="tab1Root" tabTitle="List" tabIcon="list" (ionSelect)="checkLoggedIn()"></ion-tab>
+        <ion-tab [root]="tab2Root" tabTitle="Submit" tabIcon="add" (ionSelect)="checkLoggedIn()"></ion-tab>
     </ion-tabs>
 </ion-content>

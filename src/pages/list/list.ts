@@ -24,7 +24,7 @@ export class ListPage {
     this.odoo.getList().then((data : any) => this.items = data.items);
   }
 
-  ionViewCanEnter() {
+  ionSelect() {
         if(!this.odoo.isLoggedIn()) {
           this.nav.setRoot('LoginPage');
         }
