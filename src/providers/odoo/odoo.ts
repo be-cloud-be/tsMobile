@@ -49,7 +49,7 @@ export class OdooProvider {
       return this.jsonRPC('/ts_mobile/submit',{'userCode' : this.UserCode, 'item' : item})
   }
 
-  list() {
+  getList() {
       return this.jsonRPC('/ts_mobile/list',{'userCode' : this.UserCode})
   }
 
