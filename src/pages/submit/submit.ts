@@ -32,7 +32,7 @@ export class SubmitPage {
 
     logForm() {
 
-      if(this.odoo.Submission.valid){
+      if(this.odoo.Submission && this.odoo.Submission.valid){
         // (optional) show a message to your users while you are verifying the passcode
         let loader = this.loadingCtrl.create({ content: 'Submitting the timesheet', dismissOnPageChange: true });
         loader.present();
