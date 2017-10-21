@@ -23,6 +23,15 @@ export class ListPage {
 
   duplicateItem(id : string){
       console.log('duplicateItem : '+this.nav.getViews());
-      this.odoo.ItemList[id];
+      let item = this.odoo.ItemList[id];
+      this.odoo.Submission.setValue({
+          date: new Date().toISOString(),
+          site: item.site,
+          task: item.task,
+          start: item.start,
+          end: item.end,
+          pause: item.pause
+      });
+      this.nav.setRoot('SubmitPage');
   }
 }
