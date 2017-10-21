@@ -6,7 +6,7 @@
 -->
 
 <ion-content padding>
-    <form [formGroup]="timesheet" (ngSubmit)="logForm()" >
+    <form [formGroup]="odoo.Submission" (ngSubmit)="logForm()" >
       <ion-item>
         <ion-label>Date</ion-label>
         <ion-datetime displayFormat="DDD, DD MMM YYYY" pickerFormat="DDDD MMMM" formControlName="date"></ion-datetime>
@@ -14,13 +14,13 @@
       <ion-item>
         <ion-label>Chantier</ion-label>
         <ion-select formControlName="site" interface="action-sheet">
-          <ion-option *ngFor="let site of sites" value="{{site.id}}">{{site.name}}</ion-option>
+          <ion-option *ngFor="let site of odoo.sites" value="{{site.id}}">{{site.name}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Tâche</ion-label>
         <ion-select formControlName="task" interface="action-sheet">
-          <ion-option *ngFor="let task of tasks" value="{{task.id}}">{{task.name}}</ion-option>
+          <ion-option *ngFor="let task of odoo.tasks" value="{{task.id}}">{{task.name}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
