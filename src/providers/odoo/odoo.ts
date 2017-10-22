@@ -1,16 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http,Headers } from '@angular/http';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import 'rxjs/add/operator/map';
-
-export interface ISubmission {
-    date: Date,
-    site: string,
-    task: string,
-    start: string,
-    end: string,
-    pause: string,
-}
 
 /*
   Generated class for the OdooProvider provider.
@@ -28,7 +20,20 @@ export class OdooProvider {
 
   ItemList : Array<any>;
 
-  constructor(public http: Http) {
+  Sites : Array<any>;
+  Tasks : Array<any>;
+
+  Submission : FormGroup;
+
+  constructor(public http: Http, private formBuilder: FormBuilder) {
+    this.Submission = this.formBuilder.group({
+      date: [new Date().toISOString(), Validators.required],
+      site: ['', Validators.required],
+      task: [{value:'',disabled:true}, Validators.required],
+      start: ['07:30'],
+      end: ['16:00'],
+      pause: ['00:30'],
+    });
   }
 
   isLoggedIn() {
@@ -40,19 +45,31 @@ export class OdooProvider {
           this.UserCode = userCode;
           this.UserName = data['name'];
           this.updateList();
-      });
+          this.updateSites();
+      })
   }
 
-  getSites() {
-      return this.jsonRPC('/ts_mobile/sites',{'userCode' : this.UserCode})
+  updateSites() {
+      return this.jsonRPC('/ts_mobile/sites',{'userCode' : this.UserCode}).then((data : any) => {
+          this.Sites = data.sites;
+      })
   }
 
-  getTasks(site : string) {
-      return this.jsonRPC('/ts_mobile/tasks',{'userCode' : this.UserCode, 'site' : site})
+  setSite(site : string) {
+      return this.jsonRPC('/ts_mobile/tasks',{'userCode' : this.UserCode, 'site' : site}).then((data: any) => {
+          this.Tasks = data.tasks;
+      })
   }
 
-  submit(item : ISubmission) {
-      return this.jsonRPC('/ts_mobile/submit',{'userCode' : this.UserCode, 'item' : item}).then(() => this.updateList())
+  submit() {
+      return this.jsonRPC('/ts_mobile/submit',{'userCode' : this.UserCode, 'item' : {
+          date: this.Submission.get('date').value,
+          site: this.Submission.get('site').value,
+          task: this.Submission.get('task').value,
+          start: this.Submission.get('start').value,
+          end: this.Submission.get('end').value,
+          pause: this.Submission.get('pause').value,
+      }}).then(() => this.updateList())
   }
 
   delete(itemId : string) {

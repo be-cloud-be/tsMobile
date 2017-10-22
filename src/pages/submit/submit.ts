@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController } from 'ionic-angular';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { OdooProvider } from '../../providers/odoo/odoo';
 
 /**
@@ -19,52 +18,26 @@ import { OdooProvider } from '../../providers/odoo/odoo';
 })
 export class SubmitPage {
 
-    timesheet : FormGroup;
-    sites : any;
-    tasks : any;
-
-    constructor(public nav: NavController, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, private odoo : OdooProvider) {
-      this.timesheet = this.formBuilder.group({
-        date: [new Date().toISOString(), Validators.required],
-        site: ['', Validators.required],
-        task: [{value:'',disabled:true}, Validators.required],
-        start: ['07:30'],
-        end: ['16:00'],
-        pause: ['00:30'],
-      });
-      this.timesheet.controls.site.valueChanges.subscribe(data => {
+    constructor(public nav: NavController, public loadingCtrl: LoadingController, private odoo : OdooProvider) {
+      this.odoo.Submission.controls.site.valueChanges.subscribe(data => {
           if(data) {
-              this.odoo.getTasks(data).then((data : any) => {
-                  this.tasks = data.tasks;
-                  this.timesheet.get('task').enable();
+              this.odoo.setSite(data).then(() => {
+                  this.odoo.Submission.get('task').enable();
               });
           } else {
-              this.tasks = [];
-              this.timesheet.get('task').disable();
+              this.odoo.Submission.get('task').disable();
           }
       })
-      this.odoo.getSites().then((data : any) => this.sites = data.sites);
     };
-
-    duplicateItem(site : string, task : string, start : string, end : string, pause : string) {
-        
-    }
 
     logForm() {
 
-      if(this.timesheet.valid){
+      if(this.odoo.Submission && this.odoo.Submission.valid){
         // (optional) show a message to your users while you are verifying the passcode
         let loader = this.loadingCtrl.create({ content: 'Submitting the timesheet', dismissOnPageChange: true });
         loader.present();
         // (optional) show a message to your users while you are verifying the passcode
-        return this.odoo.submit({
-            date: this.timesheet.get('date').value,
-            site: this.timesheet.get('site').value,
-            task: this.timesheet.get('task').value,
-            start: this.timesheet.get('start').value,
-            end: this.timesheet.get('end').value,
-            pause: this.timesheet.get('pause').value,
-        }).then((data) => {
+        return this.odoo.submit().then((data) => {
             loader.dismiss();
             loader = this.loadingCtrl.create({ content: 'Timesheet sent', dismissOnPageChange: true });
             loader.present();
