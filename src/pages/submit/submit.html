@@ -14,13 +14,13 @@
       <ion-item>
         <ion-label>Chantier</ion-label>
         <ion-select formControlName="site" interface="action-sheet">
-          <ion-option *ngFor="let site of odoo.sites" value="{{site.id}}">{{site.name}}</ion-option>
+          <ion-option *ngFor="let site of odoo.Sites" value="{{site.id}}">{{site.name}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Tâche</ion-label>
         <ion-select formControlName="task" interface="action-sheet">
-          <ion-option *ngFor="let task of odoo.tasks" value="{{task.id}}">{{task.name}}</ion-option>
+          <ion-option *ngFor="let task of odoo.Tasks" value="{{task.id}}">{{task.name}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
@@ -35,6 +35,6 @@
         <ion-label>Pause</ion-label>
         <ion-datetime displayFormat="H:mm" pickerFormat="H mm" formControlName="pause" min="00:00" max="04:00" minuteValues="0,15,30,45"></ion-datetime>
       </ion-item>
-      <button ion-button type="submit" block [disabled]="!timesheet.valid">Envoyer</button>
+      <button ion-button type="submit" block [disabled]="!odoo.Submission.valid">Envoyer</button>
     </form>
 </ion-content>
