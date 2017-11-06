@@ -7,4 +7,4 @@ RUN find /app
 
 VOLUME ["/root/.gradle"]
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
