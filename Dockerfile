@@ -3,7 +3,9 @@ MAINTAINER be-cloud.be <info@be-cloud.be>
 
 COPY . /app
 
-RUN find /app
+RUN set -x; \
+        cd /app \
+        && ionic build
 
 VOLUME ["/root/.gradle"]
 
