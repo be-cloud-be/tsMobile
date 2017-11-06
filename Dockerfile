@@ -7,4 +7,4 @@ RUN find /app
 
 VOLUME ["/root/.gradle"]
 
-ENTRYPOINT ["cd /app; ionic serve --lab"]
+ENTRYPOINT ["./entrypoint.sh"]
