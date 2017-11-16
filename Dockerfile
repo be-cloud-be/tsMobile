@@ -1,14 +1,19 @@
 from marcoturi/ionic
 MAINTAINER be-cloud.be <info@be-cloud.be>
 
-COPY . /app
+# Create app directory
+WORKDIR /usr/src/app
 
-VOLUME ["/root/.gradle"]
+# Install app dependencies
+COPY package.json package-lock.json ./
 
-VOLUME ["/app/node_modules"]
+RUN npm install
+# If you are building your code for production
+# RUN npm install --only=production
 
-RUN set -x; \
-        cd /app \
-        && npm install
+# Bundle app source
+COPY . .
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+EXPOSE 8080
+
+ENTRYPOINT ["/entrypoint.sh"]
