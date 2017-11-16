@@ -16,7 +16,7 @@ export class OdooProvider {
   UserCode : number;
   UserName : string;
 
-  OdooURL = 'https://socoma.imply.lu';
+  OdooURL = 'http://odoo.socomaconstruction.com';
 
   ItemList : Array<any>;
 
