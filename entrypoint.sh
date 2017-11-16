@@ -2,7 +2,7 @@
 
 # set -e
 
-cd $WORKDIR
+cd /usr/src/app
 
 exec ionic serve --lab "$@"
 
