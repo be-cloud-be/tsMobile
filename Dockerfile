@@ -14,6 +14,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+COPY entrypoint.sh /entrypoint.sh
+
 EXPOSE 8080
 
 ENTRYPOINT ["/entrypoint.sh"]
